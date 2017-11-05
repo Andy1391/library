@@ -3,7 +3,8 @@ class Book
 
 	def initialize(options ={})
 		@title = options[:title]
-		@author = options[:author]	
+		@author = options[:author]
+		@count = 0	
 	end
 
 	attr_accessor :title, :author
@@ -17,6 +18,7 @@ class Book
         self.new(title: data['title'], author: Author.from_hash(data['author']))
     end	
 
+    
 end
 
 

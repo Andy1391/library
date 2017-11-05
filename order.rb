@@ -5,8 +5,8 @@ class Order
 	def initialize(options ={})
 		@book = options[:book]
 		@reader = options[:reader]
+		@count = 0
 	end
-
 	
 	def to_hash
         {'book' => @book.to_hash, 'reader' => @reader.to_hash}
@@ -16,5 +16,6 @@ class Order
         self.new(book: Book.from_hash( data['book']), reader: Reader.from_hash(data['reader']))
     end	
 
+    
 	
 end
