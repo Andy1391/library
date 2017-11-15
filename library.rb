@@ -31,7 +31,6 @@ class Library
                 books: @books.map {|book| book.to_hash},
                 readers: @readers.map {|reader| reader.to_hash},
                 orders: @orders.map {|order| order.to_hash}
-
             }
         }
     end
@@ -53,6 +52,17 @@ class Library
         end
         self.new(books: books, readers: readers, orders: orders)
     end 
+
+    def save_in_file
+        f = File.open('library.json', 'w') 
+        f.write( library.to_hash.to_json )
+        f.close
+    end
+
+    def read_from_file
+        file = File.read('library.json')
+        data_hash = JSON.parse(file)
+    end
 
     def most_popular_book
         @books.sort { |x,y| y.read <=> x.read }[0]

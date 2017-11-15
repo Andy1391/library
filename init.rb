@@ -40,28 +40,13 @@ library.add_books books
 library.add_readers readers
 library.add_orders orders
 
-f = File.open('library.json', 'w') 
-f.write( library.to_hash.to_json )
-f.close
+puts "most_popular_book"
+puts  library.most_popular_book.to_hash
 
-file = File.read('library.json')
-data_hash = JSON.parse(file)
-puts data_hash
+puts 'best_reader'
+puts  library.best_reader.to_hash
 
-library_second = Library.from_hash data_hash
-
-f = File.open('library_second.json', 'w') 
-f.write( library_second.to_hash.to_json )
-f.close
-
-puts books.map{|book| book.read}
-puts '################'
-puts library.most_popular_book
-
-puts readers.map{|reader| reader.read}
-puts '################'
-puts library.best_reader
-
-puts library.count_readers_for_bestsellers
+puts "count_readers_for_bestsellers"
+puts library.count_readers_for_bestsellers.to_s
 
 
