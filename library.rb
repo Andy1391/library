@@ -1,5 +1,7 @@
 class Library   
 
+    LIBRARY_FILENAME = 'library.json'
+
     attr_accessor :books, :orders , :readers , :authors 
 
     def initialize(options ={})
@@ -54,13 +56,13 @@ class Library
     end 
 
     def save_in_file
-        f = File.open('library.json', 'w') 
+        f = File.open(LIBRARY_FILENAME, 'w') 
         f.write( library.to_hash.to_json )
         f.close
     end
 
     def read_from_file
-        file = File.read('library.json')
+        file = File.read(LIBRARY_FILENAME)
         data_hash = JSON.parse(file)
     end
 

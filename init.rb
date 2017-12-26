@@ -1,6 +1,7 @@
 require "json"
 require_relative "library"
 require_relative "book"
+require_relative "library"
 require_relative "author"
 require_relative "order"
 require_relative "reader"
@@ -12,41 +13,44 @@ quantity_house = 54
 
 authors = []
 
-10.times do |index|
-    authors << Author.new(Faker::Book.author , Faker::Lorem.sentences(1))
-end
+# 10.times do |index|
+#     authors << Author.new(Faker::Book.author , Faker::Lorem.sentences(1))
+# end
 
-books = []
+# books = []
 
-10.times do |index|
-    books << Book.new(Faker::Book.title , authors[rand(quantity_books)])
-end
+# 10.times do |index|
+#     books << Book.new(Faker::Book.title , authors[rand(quantity_books)])
+# end
 
-readers = []
+# readers = []
 
-10.times do |index|
-readers << Reader.new( name:Faker::Name.name ,email:Faker::Internet.email , city:Faker::Address.city ,
-  street:Faker::Address.street_name , house:rand(quantity_house)) 
-end
+# 10.times do |index|
+# readers << Reader.new( name:Faker::Name.name ,email:Faker::Internet.email , city:Faker::Address.city ,
+#   street:Faker::Address.street_name , house:rand(quantity_house)) 
+# end
 
-orders = []
+# orders = []
 
-10.times do |index|
-    orders << Order.new(books[rand(quantity_books)], readers[rand(quantity_readers)]) 
-end
+# 10.times do |index|
+#     orders << Order.new(books[rand(quantity_books)], readers[rand(quantity_readers)]) 
+# end
 
-library = Library.new books:[],readers:[], orders:[]
-library.add_books books
-library.add_readers readers
-library.add_orders orders
+# library = Library.new books:[],readers:[], orders:[]
+# library.add_books books
+# library.add_readers readers
+# library.add_orders orders
+library = Library.new 
+library = library.read_from_file
+
 
 puts "most_popular_book"
 puts  library.most_popular_book.to_hash
 
-puts 'best_reader'
-puts  library.best_reader.to_hash
+# puts 'best_reader'
+# puts  library.best_reader.to_hash
 
-puts "count_readers_for_bestsellers"
-puts library.count_readers_for_bestsellers.to_s
+# puts "count_readers_for_bestsellers"
+# puts library.count_readers_for_bestsellers.to_s
 
 
